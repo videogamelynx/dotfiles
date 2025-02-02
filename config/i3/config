@@ -21,7 +21,7 @@ set $right l
 # Your preferred terminal emulator
 set $term kitty --title kitty
 # Your preferred application launcher
-set $menu rofi -show drun 
+set $menu rofi 
 
 #Startup
 exec --no-startup-id redshift -l 40.20564:-8.41955 -t 6500k:2500k 
@@ -63,12 +63,17 @@ title_align center
 
 for_window [class=Thunar] floating enable
 for_window [class=Eog] floating enable
+for_window [class=Gedit] floating enable
+for_window [class=Evince] floating enable
+
 for_window [class=Pavucontrol] floating enable, resize set height 400px, resize set width 800px, move position center 
 
 for_window [class=kdeconnect.sms] floating enable, move position center
 for_window [class=Com.github.donadigo.eddy] floating enable, move position center
+for_window [class=steam] floating enable
 
-assign [class=discord] 7
+assign [class=discord] 10
+assign [class=steam] 3 
 
 bindsym $mod+Shift+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' 
 
@@ -107,7 +112,9 @@ client.focused $border_color $border_color #FFFFFF $border_color $border_color
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+d exec $menu -show drun
+
+    bindsym $mod+Tab exec $menu -modi "window" -show window 
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -157,9 +164,12 @@ client.focused $border_color $border_color #FFFFFF $border_color $border_color
     workspace 2 output DP-0
     workspace 3 output DP-0
     workspace 4 output DP-0
+    workspace 5 output DP-0
 
 #   Second Monitor
+    workspace 6 output HDMI-0
     workspace 7 output HDMI-0
+    workspace 8 output HDMI-0
     workspace 9 output HDMI-0
     workspace 10 output HDMI-0
 
