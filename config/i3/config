@@ -72,8 +72,8 @@ for_window [class=kdeconnect.sms] floating enable, move position center
 for_window [class=Com.github.donadigo.eddy] floating enable, move position center
 for_window [class=steam] floating enable
 
-assign [class=discord] 10
-assign [class=steam] 3 
+# assign [class=discord] 10
+# assign [class=steam] 3 
 
 bindsym $mod+Shift+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' 
 
