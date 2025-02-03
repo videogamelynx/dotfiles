@@ -80,6 +80,10 @@ let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_clangd_args=['--header-insertion=never']
 
+let g:ycm_semantic_triggers = {
+      \ 'cpp': ['->', '.', '::', 'SDL'],
+      \ }
+
 
 augroup rainbow_c
   autocmd!
@@ -93,58 +97,3 @@ let g:vimwiki_list = [{'path': '~/vimwiki',
                         \ 'nested_syntaxes': {'cpp': 'cpp'}}]
 
 
-" let lspOpts = #{
-"         \   aleSupport: v:false,
-"         \   autoComplete: v:true,
-"         \   autoHighlight: v:false,
-"         \   autoHighlightDiags: v:true,
-"         \   autoPopulateDiags: v:true,
-"         \   completionMatcher: 'case',
-"         \   completionMatcherValue: 1,
-"         \   diagSignErrorText: 'E>',
-"         \   diagSignHintText: 'H>',
-"         \   diagSignInfoText: 'I>',
-"         \   diagSignWarningText: 'W>',
-"         \   echoSignature: v:false,
-"         \   hideDisabledCodeActions: v:false,
-"         \   highlightDiagInline: v:true,
-"         \   hoverInPreview: v:false,
-"         \   ignoreMissingServer: v:false,
-"         \   keepFocusInDiags: v:true,
-"         \   keepFocusInReferences: v:true,
-"         \   completionTextEdit: v:true,
-"         \   diagVirtualTextAlign: 'above',
-"         \   diagVirtualTextWrap: 'default',
-"         \   noNewlineInCompletion: v:false,
-"         \   omniComplete: v:null,
-"         \   outlineOnRight: v:false,
-"         \   outlineWinSize: 20,
-"         \   semanticHighlight: v:true,
-"         \   showDiagInBalloon: v:true,
-"         \   showDiagInPopup: v:false,
-"         \   showDiagOnStatusLine: v:true,
-"         \   showDiagWithSign: v:true,
-"         \   showDiagWithVirtualText: v:true,
-"         \   showInlayHints: v:true,
-"         \   showSignature: v:true,
-"         \   snippetSupport: v:false,
-"         \   ultisnipsSupport: v:false,
-"         \   useBufferCompletion: v:false,
-"         \   usePopupInCodeAction: v:false,
-"         \   useQuickfixForLocations: v:false,
-"         \   vsnipSupport: v:false,
-"         \   bufferCompletionTimeout: 100,
-"         \   customCompletionKinds: v:false,
-"         \   completionKinds: {},
-"         \   filterCompletionDuplicates: v:false,
-" 	\ }
-
-" autocmd User LspSetup call LspOptionsSet(lspOpts)
-
-" let lspServers = [#{
-" 	\	  name: 'clang',
-" 	\	  filetype: ['c', 'cpp'],
-" 	\	  path: '/usr/bin/clangd',
-" 	\	  args: ['--background-index']
-" 	\ }]
-" autocmd User LspSetup call LspAddServer(lspServers)

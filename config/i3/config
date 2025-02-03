@@ -127,7 +127,8 @@ client.focused $border_color $border_color #FFFFFF $border_color $border_color
     bindsym $mod+Shift+c reload
     
     # Lock the Screen
-    bindsym $mod+Shift+q exec /home/guts/.config/i3/dracula/i3lock-color/lock 
+    # bindsym $mod+Shift+q exec /home/guts/.config/i3/dracula/i3lock-color/lock 
+    bindsym $mod+Shift+q exec i3lock --no-unlock-indicator -i ~/Pictures/nord_minimal_cat.png -t
     
     # Take a screenshot
     bindsym $mod+Shift+s exec flameshot gui
