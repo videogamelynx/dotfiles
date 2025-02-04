@@ -15,7 +15,7 @@ set nocompatible
 filetype plugin on
 syntax on
 
-autocmd FileType c,cpp ClangFormatAutoEnable
+" autocmd FileType c,cpp ClangFormatAutoEnable
 
 " PLUGINS
 call plug#begin()
@@ -87,13 +87,13 @@ let g:ycm_semantic_triggers = {
 
 augroup rainbow_c
   autocmd!
-  autocmd FileType cpp,c RainbowParentheses
+  autocmd FileType cpp,c,js RainbowParentheses
 augroup END
 
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline
 let g:vimwiki_list = [{'path': '~/vimwiki',
-                        \ 'nested_syntaxes': {'cpp': 'cpp'}}]
+                        \ 'nested_syntaxes': {'cpp': 'cpp', 'js': 'js'}}]
 
 

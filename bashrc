@@ -14,7 +14,7 @@ alias gamesetup=$HOME/.config/user/scripts/game_setup.sh
 alias gameopen=". $HOME/.config/user/scripts/game_open.sh"
 
 alias sudo='sudo '
-alias chattr='poweroff'
+alias chattr='poweroff && '
 alias dot='git -C $HOME/.dotfiles'
 
 # don't put duplicate lines or lines starting with space in the history.
