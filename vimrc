@@ -41,8 +41,11 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'rhysd/vim-clang-format'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'vimwiki/vimwiki'
-" Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
+Plug 'wfxr/minimap.vim'
+Plug 'terryma/vim-multiple-cursors'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 
 call plug#end()
 
@@ -67,8 +70,22 @@ nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fa :Files ~<CR>
 nnoremap <leader>fm :ClangFormat<CR>
 nnoremap gd :YcmCompleter GoToDefinition<CR>
+nnoremap <silent> <leader>hi <Plug>(YCMToggleInlayHints)
+nnoremap <leader>mm :MinimapToggle<CR>
+
+nnoremap gn :tabnext <CR>
+nnoremap gp :tabprev <CR>
+
+nmap <silent> <c-k> :wincmd l<CR>
+nmap <silent> <c-j> :wincmd h<CR>
+
 
 map <F9> :YcmCompleter FixIt<CR>
+
+
+let g:minimap_width = 10
+let g:minimap_auto_start = 1
+" let g:minimap_auto_start_win_enter = 1
 
 " LSP
 let g:ycm_enable_semantic_highlighting=1
