@@ -77,6 +77,8 @@ for_window [class=steam] floating enable
 
 bindsym $mod+Shift+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' 
 
+bindsym $mod+Shift+a exec /home/guts/Builds/i3-layout-manager/layout_manager.sh
+
 # set $border_color #8E91B8
 # set $border_color #6D6794
 # set $border_color #6272a4
