@@ -1,4 +1,4 @@
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+let data_dir = has('nvim') ? stdpath('data') . '/snnoremap <Leader>a :Ack!<Space>ite' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source '~/.vimrc' 
@@ -44,6 +44,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'ryanoasis/vim-devicons'
 Plug 'wfxr/minimap.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'mileszs/ack.vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 
@@ -60,18 +61,23 @@ command! -bang -nargs=? -complete=dir Files
 colorscheme catppuccin_frappe
 let g:lightline = {'colorscheme': 'catppuccin_frappe'}
 
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
 set encoding=UTF_8
 set number
 set relativenumber
 
 " KEYBINDINGS
-nnoremap <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>e :MinimapClose<CR> :NERDTreeToggle<CR>
 nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fa :Files ~<CR>
+" nnoremap <leader>fa :Files ~<CR>
 nnoremap <leader>fm :ClangFormat<CR>
 nnoremap gd :YcmCompleter GoToDefinition<CR>
 nnoremap <silent> <leader>hi <Plug>(YCMToggleInlayHints)
 nnoremap <leader>mm :MinimapToggle<CR>
+
+cnoreabbrev Ack Ack!
+nnoremap <Leader>fa :MinimapClose<CR> :Ack!<Space>
 
 nnoremap gn :tabnext <CR>
 nnoremap gp :tabprev <CR>
@@ -84,7 +90,7 @@ map <F9> :YcmCompleter FixIt<CR>
 
 
 let g:minimap_width = 10
-let g:minimap_auto_start = 1
+let g:minimap_auto_start = 0
 " let g:minimap_auto_start_win_enter = 1
 
 " LSP
