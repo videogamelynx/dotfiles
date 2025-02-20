@@ -12,6 +12,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set nocompatible
+set background=dark
 filetype plugin on
 syntax on
 
@@ -42,9 +43,18 @@ Plug 'rhysd/vim-clang-format'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'vimwiki/vimwiki'
 Plug 'ryanoasis/vim-devicons'
-Plug 'wfxr/minimap.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'mileszs/ack.vim'
+" Plug 'mileszs/ack.vim'
+Plug 'dyng/ctrlsf.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+" Plug 'jnurmine/Zenburn'
+" Plug 'nanotech/jellybeans.vim'
+" Plug 'wadackel/vim-dogrun'
+" Plug 'wfxr/minimap.vim'
+Plug 'severin-lemaignan/vim-minimap'
+Plug 'NLKNguyen/papercolor-theme'
+" Plug 'morhetz/gruvbox'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 
@@ -54,12 +64,20 @@ call plug#end()
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 2024
+
 " THEME
 " colorscheme nord
 " colorscheme tokyonight 
 "
 colorscheme catppuccin_frappe
+" colorscheme jellybeans 
+" colorscheme dogrun 
+" colorscheme gruvbox
+" colorscheme zenburn
+" colorscheme PaperColor
+
 let g:lightline = {'colorscheme': 'catppuccin_frappe'}
+" let g:lightline = {'colorscheme': 'gruvbox'}
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
@@ -68,16 +86,22 @@ set number
 set relativenumber
 
 " KEYBINDINGS
-nnoremap <leader>e :MinimapClose<CR> :NERDTreeToggle<CR>
+nnoremap <leader>e :NERDTreeToggle<CR>
 nnoremap <leader>ff :Files<CR>
 " nnoremap <leader>fa :Files ~<CR>
 nnoremap <leader>fm :ClangFormat<CR>
 nnoremap gd :YcmCompleter GoToDefinition<CR>
 nnoremap <silent> <leader>hi <Plug>(YCMToggleInlayHints)
-nnoremap <leader>mm :MinimapToggle<CR>
 
-cnoreabbrev Ack Ack!
-nnoremap <Leader>fa :MinimapClose<CR> :Ack!<Space>
+let g:minimap_toggle='<leader>mm'
+
+
+let g:clang_format#style_options = {
+  \ "ColumnLimit": 120 }
+
+
+" cnoreabbrev Ack Ack!
+nnoremap <Leader>fa :CtrlSF<Space>
 
 nnoremap gn :tabnext <CR>
 nnoremap gp :tabprev <CR>
@@ -89,8 +113,11 @@ nmap <silent> <c-j> :wincmd h<CR>
 map <F9> :YcmCompleter FixIt<CR>
 
 
-let g:minimap_width = 10
-let g:minimap_auto_start = 0
+let g:Hexokinase_highlighters = [ 'sign_column' ]
+let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla,colour_names'
+
+" let g:minimap_width = 10
+" let g:minimap_auto_start = 1
 " let g:minimap_auto_start_win_enter = 1
 
 " LSP
@@ -106,6 +133,11 @@ let g:ycm_clangd_args=['--header-insertion=never']
 let g:ycm_semantic_triggers = {
       \ 'cpp': ['->', '.', '::', 'SDL'],
       \ }
+
+" let loaded_minimap = 1
+autocmd VimEnter * Minimap
+autocmd TabEnter * Minimap
+autocmd VimLeave * MinimapClose
 
 
 augroup rainbow_c

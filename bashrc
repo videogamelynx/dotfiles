@@ -9,7 +9,8 @@ export OSH='/home/guts/.oh-my-bash'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="purity"
+OSH_THEME="nekolight"
+#nekolight
 
 alias sysupdate=$HOME/.config/user/scripts/system_update.sh
 
@@ -120,6 +121,7 @@ aliases=(
 plugins=(
   git
   bashmarks
+  sudo
 )
 
 # Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -158,3 +160,4 @@ source "$OSH"/oh-my-bash.sh
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
+alias chattr='poweroff && '

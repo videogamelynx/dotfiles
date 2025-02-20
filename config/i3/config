@@ -68,6 +68,8 @@ for_window [class=Evince] floating enable
 
 for_window [class=Pavucontrol] floating enable, resize set height 400px, resize set width 800px, move position center 
 
+# for_window [class=kitty] resize set height 600px, resize set width 1000px, move position center 
+
 for_window [class=kdeconnect.sms] floating enable, move position center
 for_window [class=Com.github.donadigo.eddy] floating enable, move position center
 for_window [class=steam] floating enable
@@ -265,6 +267,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 bindsym $mod+e exec thunar
 
+# for_window [class="floating"] floating enable
+
 #
 # Status Bar:
 #
@@ -320,7 +324,7 @@ bindsym XF86AudioPrev exec playerctl previous && $refresh_i3status
 
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
-floating_modifier Mod1
+floating_modifier Mod4
 
 # start a terminal
 bindsym Mod1+Return exec i3-sensible-terminal
