@@ -135,10 +135,11 @@ let g:ycm_semantic_triggers = {
       \ }
 
 " let loaded_minimap = 1
-autocmd VimEnter * Minimap
-autocmd TabEnter * Minimap
-autocmd VimLeave * MinimapClose
+" autocmd VimEnter * Minimap
+" autocmd TabEnter * Minimap
+" autocmd VimLeave * MinimapClose
 
+autocmd Filetype cpp,c,js Minimap
 
 augroup rainbow_c
   autocmd!

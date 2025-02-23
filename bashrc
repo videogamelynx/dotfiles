@@ -18,7 +18,7 @@ alias gamesetup=$HOME/.config/user/scripts/game_setup.sh
 alias gameopen=". $HOME/.config/user/scripts/game_open.sh"
 
 alias sudo='sudo '
-alias chattr='poweroff && '
+# alias chattr='poweroff && '
 alias dot='git -C $HOME/.dotfiles'
 alias pipes=pipes.sh
 alias visualizer=cava
@@ -160,4 +160,4 @@ source "$OSH"/oh-my-bash.sh
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
-alias chattr='poweroff && '
+ # alias chattr='poweroff && '

@@ -30,7 +30,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # exec_always polybar --config=$HOME/.config/polybar/config.ini primary 
 exec wl-paste --primary --watch wl-copy
 exec --no-startup-id greenclip daemon
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 exec --no-startup-id kdeconnect-indicator 
 exec "setxkbmap -layout pt"
 exec --no-startup-id dunst
