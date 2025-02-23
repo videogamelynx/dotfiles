@@ -1,0 +1,89 @@
+#!/bin/bash
+
+Help()
+{
+  echo "Setup SDL3 Project"
+  echo "Usage: $ gamesetup name_of_project"
+}
+
+games_dir=$HOME/Desktop/games
+
+CreateProject()
+{
+  #check if game exists
+  #game_exists=$(ls $games_dir | grep $1)
+
+  i=1
+  ipee=${i}p
+
+  proj_name=$(ls $games_dir | grep $1 | sed -n $ipee)
+
+  #Check line by line
+  while [ -n "$proj_name" ]
+  do
+
+  if [[ "$1" == "$proj_name" ]]; then
+    echo "Project with name $1 already exists."
+    echo "Try a different name."
+    return
+  fi
+
+  i=$((i+1))
+  ipee=${i}p
+  proj_name=$(ls . | grep $1 | sed -n $ipee)
+
+  done
+
+  echo "Creating Directories..."
+
+  mkdir $games_dir/$1 | echo
+  cd $games_dir/$1
+  mkdir src build assets
+  touch ./src/main.cpp
+  cat $HOME/.config/user/scripts/sdl_dummy_code.cpp >> ./src/main.cpp
+
+  echo "Configuring CMake..."
+  touch CMakeLists.txt
+  echo "cmake_minimum_required(VERSION 3.15...3.31)" >> CMakeLists.txt
+  echo "" >> CMakeLists.txt
+  echo "project($1 VERSION 1.0 DESCRIPTION \"$1\" LANGUAGES CXX)" >> CMakeLists.txt  
+  echo "" >> CMakeLists.txt
+  echo "set( CMAKE_EXPORT_COMPILE_COMMANDS ON )" >> CMakeLists.txt
+  echo "find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3)" >> CMakeLists.txt
+  # echo "include_directories(\${SDL2_INCLUDE_DIRS})" >> CMakeLists.txt
+  echo "" >> CMakeLists.txt
+  echo "add_executable($1 src/main.cpp)" >> CMakeLists.txt
+  echo "target_link_libraries($1 PRIVATE SDL3::SDL3)" >> CMakeLists.txt
+  
+  cd build
+  cmake ..
+  cd ..
+
+  echo "Configuring YCM Code Completion..."
+  $HOME/.vim/plugged/YCM-Generator/config_gen.py . 
+
+  echo "Done"
+}
+
+while getopts ":h" option; do
+   case $option in
+      h) # display Help
+         Help
+         exit;;
+   esac
+done
+
+if [ -z $1 ]; then
+   Help
+else
+  CreateProject $1
+fi
+
+
+
+
+
+
+
+
+
