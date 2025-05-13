@@ -24,18 +24,18 @@ set $term kitty --title kitty
 set $menu rofi 
 
 #Startup
-exec --no-startup-id redshift -l 40.20564:-8.41955 -t 6500k:2500k 
-exec_always --no-startup-id snixembed --fork
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id redshift-gtk -l 40.20564:-8.41955 -t 6500k:2600k 
+exec --no-startup-id snixembed --fork
+exec --no-startup-id $HOME/.config/polybar/launch.sh
 # exec_always polybar --config=$HOME/.config/polybar/config.ini primary 
-exec wl-paste --primary --watch wl-copy
+exec --no-startup-id wl-paste --primary --watch wl-copy
 exec --no-startup-id greenclip daemon
-# exec --no-startup-id nm-applet
 exec --no-startup-id kdeconnect-indicator 
-exec "setxkbmap -layout pt"
-exec --no-startup-id dunst
-exec feh --bg-scale /home/guts/Pictures/dark_souls_dark.jpg /home/guts/Pictures/dark_souls_dark.jpg
+exec --no-startup-id "setxkbmap -layout pt"
+exec --no-startup-id dunst unredir-if-possible
+exec --no-startup-id feh --bg-scale /home/guts/Pictures/dark_souls_dark.jpg /home/guts/Pictures/dark_souls_dark.jpg
 
+exec --no-startup-id playerctld daemon
 
 #GTK Themes
 # set $gnome-schema org.gnome.desktop.interface
@@ -61,7 +61,7 @@ smart_borders on
 for_window [all] title_window_icon on
 title_align center
 
-for_window [class=Thunar] floating enable
+for_window [class=Thunar] floating enable, resize set height 600px, resize set width 900px, move position center
 for_window [class=Eog] floating enable
 for_window [class=Gedit] floating enable
 for_window [class=Evince] floating enable
@@ -72,14 +72,14 @@ for_window [class=Pavucontrol] floating enable, resize set height 400px, resize 
 
 for_window [class=kdeconnect.sms] floating enable, move position center
 for_window [class=Com.github.donadigo.eddy] floating enable, move position center
-for_window [class=steam] floating enable
+# for_window [class=steam] floating enable
 
 # assign [class=discord] 10
 # assign [class=steam] 3 
 
-bindsym $mod+Shift+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' 
+bindsym $mod+Shift+v exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' 
 
-bindsym $mod+Shift+a exec /home/guts/Builds/i3-layout-manager/layout_manager.sh
+bindsym $mod+Shift+a exec --no-startup-id /home/guts/Builds/i3-layout-manager/layout_manager.sh
 
 # set $border_color #8E91B8
 # set $border_color #6D6794
@@ -110,13 +110,13 @@ client.focused $border_color $border_color #FFFFFF $border_color $border_color
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec --no-startup-id $term
 
     # Kill focused window
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu -show drun
+    bindsym $mod+d exec --no-startup-id $menu -show drun
 
     bindsym $mod+Tab exec $menu -modi "window" -show window 
 
@@ -310,7 +310,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

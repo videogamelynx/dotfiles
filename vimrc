@@ -48,6 +48,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'jnurmine/Zenburn'
 " Plug 'nanotech/jellybeans.vim'
 " Plug 'wadackel/vim-dogrun'
@@ -86,7 +87,7 @@ set number
 set relativenumber
 
 " KEYBINDINGS
-nnoremap <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>e :NERDTreeMirror<CR>:NERDTreeToggle<CR>
 nnoremap <leader>ff :Files<CR>
 " nnoremap <leader>fa :Files ~<CR>
 nnoremap <leader>fm :ClangFormat<CR>
@@ -95,6 +96,7 @@ nnoremap <silent> <leader>hi <Plug>(YCMToggleInlayHints)
 
 let g:minimap_toggle='<leader>mm'
 
+autocmd VimEnter * NERDTree
 
 let g:clang_format#style_options = {
   \ "ColumnLimit": 120 }
@@ -130,6 +132,7 @@ let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_clangd_args=['--header-insertion=never']
 
+
 let g:ycm_semantic_triggers = {
       \ 'cpp': ['->', '.', '::', 'SDL'],
       \ }
@@ -140,6 +143,7 @@ let g:ycm_semantic_triggers = {
 " autocmd VimLeave * MinimapClose
 
 autocmd Filetype cpp,c,js Minimap
+autocmd VimEnter * NERDTree | wincmd p
 
 augroup rainbow_c
   autocmd!
@@ -150,6 +154,6 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline
 let g:vimwiki_list = [{'path': '~/vimwiki',
-                        \ 'nested_syntaxes': {'cpp': 'cpp', 'js': 'js'}}]
+                        \ 'nested_syntaxes': {'cpp': 'cpp', 'js': 'js', 'ts': 'ts', 'jsx': 'jsx', 'tsx': 'tsx'}}]
 
 
