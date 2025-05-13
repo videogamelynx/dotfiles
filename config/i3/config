@@ -9,6 +9,10 @@
 # layout, use the i3-config-wizard
 #
 
+exec eval $(ssh-agent -s)
+exec ssh-add ~/.ssh/id_rsa
+exec ssh-add ~/.ssh/id_ed25519
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
