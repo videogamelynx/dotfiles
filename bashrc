@@ -18,7 +18,6 @@ alias gamesetup=$HOME/.config/user/scripts/game_setup.sh
 alias gameopen=". $HOME/.config/user/scripts/game_open.sh"
 
 alias sudo='sudo '
-alias nvim=$HOME/Builds/nvim-linux-x86_64/bin/nvim
 
 
 

@@ -13,10 +13,10 @@ set shiftwidth=2
 set expandtab
 set nocompatible
 set background=dark
+set mouse=a
 filetype plugin on
 syntax on
 
-" autocmd FileType c,cpp ClangFormatAutoEnable
 
 " PLUGINS
 call plug#begin()
@@ -24,8 +24,8 @@ call plug#begin()
 " List your plugins here
 Plug 'tpope/vim-sensible'
 
-" Plug 'nordtheme/vim'
-" Plug 'ghifarit53/tokyonight-vim'
+Plug 'nordtheme/vim'
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 Plug 'itchyny/lightline.vim'
@@ -33,7 +33,6 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
-" Plug 'yegappan/lsp'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -44,20 +43,15 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'vimwiki/vimwiki'
 Plug 'ryanoasis/vim-devicons'
 Plug 'terryma/vim-multiple-cursors'
-" Plug 'mileszs/ack.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'jnurmine/Zenburn'
-" Plug 'nanotech/jellybeans.vim'
-" Plug 'wadackel/vim-dogrun'
-" Plug 'wfxr/minimap.vim'
+Plug 'jnurmine/Zenburn'
+Plug 'wadackel/vim-dogrun'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'NLKNguyen/papercolor-theme'
-" Plug 'morhetz/gruvbox'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -87,16 +81,33 @@ set number
 set relativenumber
 
 " KEYBINDINGS
-nnoremap <leader>e :NERDTreeMirror<CR>:NERDTreeToggle<CR>
-nnoremap <leader>ff :Files<CR>
+nmap <leader>e :NERDTreeMirror<CR>:NERDTreeToggle<CR>
+" nmap <leader>f :MinimapClose<CR> :Files<CR>
+" nmap <leader>b :MinimapClose<CR> :Buffers<CR>
+
+"File Search
+nmap <silent> <leader>fs :Files<CR>
+
+"Buffer Search
+nmap <silent> <leader>bs :Buffers<CR>
+
+nmap <leader>t :enew<CR>
+
+nmap <leader>l :bprevious <CR>
+nmap <leader>h :bnext <CR>
+
 " nnoremap <leader>fa :Files ~<CR>
-nnoremap <leader>fm :ClangFormat<CR>
-nnoremap gd :YcmCompleter GoToDefinition<CR>
-nnoremap <silent> <leader>hi <Plug>(YCMToggleInlayHints)
+nmap <leader>fm :ClangFormat<CR>
+nmap gd :YcmCompleter GoToDefinition<CR>
+nmap <silent> <leader>ih <Plug>(YCMToggleInlayHints)
+
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
 
 let g:minimap_toggle='<leader>mm'
 
-autocmd VimEnter * NERDTree
 
 let g:clang_format#style_options = {
   \ "ColumnLimit": 120 }
@@ -105,14 +116,19 @@ let g:clang_format#style_options = {
 " cnoreabbrev Ack Ack!
 nnoremap <Leader>fa :CtrlSF<Space>
 
-nnoremap gn :tabnext <CR>
-nnoremap gp :tabprev <CR>
-
-nmap <silent> <c-k> :wincmd l<CR>
-nmap <silent> <c-j> :wincmd h<CR>
-
+" nnoremap gn :tabnext <CR>
+" nnoremap gp :tabprev <CR>
 
 map <F9> :YcmCompleter FixIt<CR>
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+set hidden
+
 
 
 let g:Hexokinase_highlighters = [ 'sign_column' ]
@@ -139,11 +155,10 @@ let g:ycm_semantic_triggers = {
 
 " let loaded_minimap = 1
 " autocmd VimEnter * Minimap
-" autocmd TabEnter * Minimap
-" autocmd VimLeave * MinimapClose
+" autocmd TabEnter * MinimapClose
+autocmd VimLeave * MinimapClose
 
-autocmd Filetype cpp,c,js Minimap
-autocmd VimEnter * NERDTree | wincmd p
+" autocmd Filetype cpp,c,js Minimap
 
 augroup rainbow_c
   autocmd!
@@ -155,5 +170,4 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline
 let g:vimwiki_list = [{'path': '~/vimwiki',
                         \ 'nested_syntaxes': {'cpp': 'cpp', 'js': 'js', 'ts': 'ts', 'jsx': 'jsx', 'tsx': 'tsx'}}]
-
 
