@@ -27,10 +27,10 @@ OpenProject()
     return
   fi
 
-  # cd $games_dir/$1/src
+  cd $games_dir/$1/src
 
-  kitty @ launch --type=tab --tab-title="${1}/src"  --cwd=$games_dir/$1/src
-  kitty @ launch --type=tab --tab-title="${1}/build" --dont-take-focus --cwd=$games_dir/$1/build
+  # kitty @ launch --type=os-window --tab-title="${1}/src"  --cwd=$games_dir/$1/src
+  kitty @ launch --type=os-window --tab-title="${1}/build" --dont-take-focus --cwd=$games_dir/$1/build
   clear
 }
 

@@ -18,6 +18,25 @@ filetype plugin on
 syntax on
 
 
+augroup MyYCMCustom
+  autocmd!
+  autocmd FileType c,cpp let b:ycm_hover = {
+    \ 'command': 'GetDoc',
+    \ 'syntax': &filetype
+    \ }
+augroup END 
+
+
+" Define a default mapping for <C-s>
+nnoremap <silent> <C-s> :YcmCompleter Format<CR>:wall<CR>
+
+" Override the mapping for C and C++ filetypes
+augroup CCppFormat
+  autocmd!
+  autocmd FileType c,cpp nnoremap <buffer> <silent> <C-s> :ClangFormat<CR>:wall<CR>
+augroup END
+
+
 " PLUGINS
 call plug#begin()
 
@@ -52,6 +71,8 @@ Plug 'wadackel/vim-dogrun'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 
 call plug#end()
 
@@ -91,13 +112,20 @@ nmap <silent> <leader>fs :Files<CR>
 "Buffer Search
 nmap <silent> <leader>bs :Buffers<CR>
 
-nmap <leader>t :enew<CR>
+"Pattern Search 
+nmap <silent> <leader>ps :Ag<CR>
+
+nmap <leader>t :tabnew<CR>
 
 nmap <leader>l :bprevious <CR>
 nmap <leader>h :bnext <CR>
 
-" nnoremap <leader>fa :Files ~<CR>
-nmap <leader>fm :ClangFormat<CR>
+
+nmap <leader>fm :YcmCompleter Format<CR>
+
+"Copy to clipboard
+vnoremap <c-C> :w !xclip -i -sel c<CR><CR>
+
 nmap gd :YcmCompleter GoToDefinition<CR>
 nmap <silent> <leader>ih <Plug>(YCMToggleInlayHints)
 
