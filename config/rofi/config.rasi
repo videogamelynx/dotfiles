@@ -1,5 +1,5 @@
 configuration {
-	modi: "drun,run,calc:qalc";
+	modi: "drun,run,calc";
   show-icons: true;
   icon-theme: "Papirus";
   lines: 12;
@@ -38,7 +38,7 @@ configuration {
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-/*	combi-modi: "window,run";*/
+	// combi-modi: "drun,run,calc:qalc";
 /*	matching: "normal";*/
 /*	tokenize: true;*/
 /*	m: "-5";*/
@@ -88,8 +88,8 @@ configuration {
 /*	kb-accept-custom-alt: "Control+Shift+Return";*/
 /*	kb-accept-alt: "Shift+Return";*/
 /*	kb-delete-entry: "Shift+Delete";*/
-kb-mode-next: "Shift+Right,Super+l";
-kb-mode-previous: "Super+h";
+kb-mode-next: "Shift+Right,Alt+l";
+kb-mode-previous: "Alt+h";
 /*	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";*/
 /*	kb-mode-complete: "Control+l";*/
 /*	kb-row-left: "Control+Page_Up";*/
@@ -177,7 +177,9 @@ kb-mode-previous: "Super+h";
     border-radius:    1;
     border-color:     @bordercolor;
     padding:          15;
-    width: 420px;
+    width: 540px;
+    height: 620px;
+    
 }
 #mainbox {
     border:  0;
@@ -264,6 +266,7 @@ kb-mode-previous: "Super+h";
 }
 #entry {
     spacing:    0;
+    placeholder: "";
     text-color: @foreground;
 }
 #prompt {

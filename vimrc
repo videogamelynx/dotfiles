@@ -17,6 +17,10 @@ set mouse=a
 filetype plugin on
 syntax on
 
+set termwinsize=15x0
+set termwinkey=<C-K>
+set noequalalways
+cabbrev term bo terminal
 
 augroup MyYCMCustom
   autocmd!
@@ -73,6 +77,10 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+
 
 call plug#end()
 
@@ -80,6 +88,8 @@ call plug#end()
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 2024
+
+let g:gitgutter_enabled = 0
 
 " THEME
 " colorscheme nord
@@ -92,8 +102,16 @@ colorscheme catppuccin_frappe
 " colorscheme zenburn
 " colorscheme PaperColor
 
-let g:lightline = {'colorscheme': 'catppuccin_frappe'}
-" let g:lightline = {'colorscheme': 'gruvbox'}
+let g:lightline = {
+      \ 'colorscheme': 'catppuccin_frappe',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
@@ -168,7 +186,7 @@ let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla,colour_names'
 
 " LSP
 let g:ycm_enable_semantic_highlighting=1
-let g:ycm_enable_inlay_hints=1
+let g:ycm_enable_inlay_hints=0
 let g:ycm_echo_current_diagnostic='virtual-text'
 let g:ycm_update_diagnostics_in_insert_mode=0
 let g:ycm_autoclose_preview_window_after_insertion=1

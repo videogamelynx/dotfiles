@@ -126,7 +126,10 @@ client.focused $border_color $border_color #FFFFFF $border_color $border_color
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec --no-startup-id $menu -show drun
+    bindsym $mod+d exec --no-startup-id $menu -show drun -hint-welcome "Result:" -no-persist-history
+
+    #Emoji keyboard
+    bindsym $mod+F12 exec --no-startup-id rofimoji
 
     # Launch notes
     bindsym $mod+n exec --no-startup-id flatpak run md.obsidian.Obsidian
