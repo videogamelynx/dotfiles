@@ -16,7 +16,8 @@ exec --no-startup-id ssh-add ~/.ssh/id_ed25519
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod1
+# Logo key. Use Mod4 for WinKey.
+set $mod Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -69,7 +70,7 @@ for_window [class=Thunar] floating enable, resize set height 600px, resize set w
 for_window [class=Eog] floating enable
 for_window [class=Gedit] floating enable
 for_window [class=Evince] floating enable
-
+for_window [class=Com.github.rajsolai.textsnatcher] floating enable
 for_window [class=Pavucontrol] floating enable, resize set height 400px, resize set width 800px, move position center 
 
 # for_window [class=kitty] resize set height 600px, resize set width 1000px, move position center 
