@@ -22,6 +22,13 @@ set termwinkey=<C-K>
 set noequalalways
 cabbrev term bo terminal
 
+command Build execute '!cd build && make'
+command Run execute '!find build -maxdepth 1 -executable -type f -exec {} \;'
+
+cabbrev build Build
+cabbrev run Run
+
+
 augroup MyYCMCustom
   autocmd!
   autocmd FileType c,cpp let b:ycm_hover = {
