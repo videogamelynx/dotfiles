@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-scale '$HOME/Pictures/dark_souls_dark.jpg' '$HOME/Pictures/dark_souls_dark.jpg' 
