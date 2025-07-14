@@ -26,6 +26,8 @@ title = "ghostty"
 window-decoration = none
 window-theme = dark
 
+window-padding-y = 0
+
 clipboard-trim-trailing-spaces = true
 
 background-opacity = 0.8

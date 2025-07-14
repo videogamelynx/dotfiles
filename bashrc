@@ -16,6 +16,8 @@ alias sysupdate=$HOME/.config/user/scripts/system_update.sh
 alias gamesetup=$HOME/.config/user/scripts/game_setup.sh
 alias gameopen=". $HOME/.config/user/scripts/game_open.sh"
 
+[[ -s /home/guts/.autojump/etc/profile.d/autojump.sh ]] && source /home/guts/.autojump/etc/profile.d/autojump.sh
+
 
 source $HOME/.config/user/scripts/game-completion.bash
 

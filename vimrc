@@ -28,6 +28,7 @@ command Run execute '!find build -maxdepth 1 -executable -type f -exec {} \;'
 cabbrev build Build
 cabbrev run Run
 
+au BufWrite * :Autoformat
 
 augroup MyYCMCustom
   autocmd!
@@ -39,13 +40,13 @@ augroup END
 
 
 " Define a default mapping for <C-s>
-nnoremap <silent> <C-s> :YcmCompleter Format<CR>:wall<CR>
+" nnoremap <silent> <C-s> :YcmCompleter Format<CR>:wall<CR>
 
 " Override the mapping for C and C++ filetypes
-augroup CCppFormat
-  autocmd!
-  autocmd FileType c,cpp nnoremap <buffer> <silent> <C-s> :ClangFormat<CR>:wall<CR>
-augroup END
+" augroup CCppFormat
+"   autocmd!
+"   autocmd FileType c,cpp nnoremap <buffer> <silent> <C-s> :ClangFormat<CR>:wall<CR>
+" augroup END
 
 
 " PLUGINS
@@ -57,7 +58,6 @@ Plug 'tpope/vim-sensible'
 Plug 'nordtheme/vim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'terryma/vim-smooth-scroll'
@@ -87,6 +87,7 @@ Plug 'preservim/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-autoformat/vim-autoformat'
 
 
 call plug#end()
@@ -98,16 +99,8 @@ command! -bang -nargs=? -complete=dir Files
 
 let g:gitgutter_enabled = 0
 
-" THEME
-" colorscheme nord
-" colorscheme tokyonight 
-"
+
 colorscheme catppuccin_macchiato
-" colorscheme jellybeans 
-" colorscheme dogrun 
-" colorscheme gruvbox
-" colorscheme zenburn
-" colorscheme PaperColor
 
 let g:lightline = {
       \ 'colorscheme': 'catppuccin_macchiato',

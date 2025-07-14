@@ -1,5 +1,5 @@
 configuration {
-	modi: "drun,run,calc";
+	modi: "drun,calc,run";
   show-icons: true;
   icon-theme: "Papirus";
   lines: 12;

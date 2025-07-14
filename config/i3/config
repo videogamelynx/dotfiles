@@ -27,9 +27,9 @@ set $right l
 set $term ghostty
 # Your preferred application launcher
 set $menu rofi 
+set $file_browser nautilus
 
 
-exec --no-startup-id xset r rate 300 30
 
 #Startup
 exec --no-startup-id redshift -l 40.20564:-8.41955 -t 6500k:2600k 
@@ -52,7 +52,9 @@ gaps outer -5
 # smart_gaps on
 
 tiling_drag off
-# mouse_warping none
+
+# focus_follows_mouse no       
+mouse_warping none          
 
 
 default_border pixel 2
@@ -60,9 +62,10 @@ default_border pixel 2
 smart_borders on
 
 for_window [all] title_window_icon on
+for_window [class=.*] border pixel 2
 title_align center
 
-for_window [class=Thunar] floating enable, resize set height 600px, resize set width 900px, move position center
+for_window [class=Org.gnome.NautilusPreviewer] move position center
 for_window [class=Eog] floating enable
 for_window [class=Gedit] floating enable
 for_window [class=Evince] floating enable
@@ -272,7 +275,7 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-bindsym $mod+e exec thunar
+bindsym $mod+e exec $file_browser
 
 # for_window [class="floating"] floating enable
 
