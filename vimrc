@@ -1,7 +1,7 @@
 let data_dir = has('nvim') ? stdpath('data') . '/snnoremap <Leader>a :Ack!<Space>ite' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source '~/.vimrc' 
+  autocmd VimEnter * PlugInstall --sync | source '~/.vimrc'
 endif
 
 "Preferences
@@ -33,10 +33,10 @@ au BufWrite * :Autoformat
 augroup MyYCMCustom
   autocmd!
   autocmd FileType c,cpp let b:ycm_hover = {
-    \ 'command': 'GetDoc',
-    \ 'syntax': &filetype
-    \ }
-augroup END 
+        \ 'command': 'GetDoc',
+        \ 'syntax': &filetype
+        \ }
+augroup END
 
 
 " Define a default mapping for <C-s>
@@ -94,7 +94,7 @@ call plug#end()
 
 " FZF
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 2024
 
 let g:gitgutter_enabled = 0
@@ -130,7 +130,7 @@ nmap <silent> <leader>fs :Files<CR>
 "Buffer Search
 nmap <silent> <leader>bs :Buffers<CR>
 
-"Pattern Search 
+"Pattern Search
 nmap <silent> <leader>ps :Ag<CR>
 
 nmap <leader>t :tabnew<CR>
@@ -156,7 +156,7 @@ let g:minimap_toggle='<leader>mm'
 
 
 let g:clang_format#style_options = {
-  \ "ColumnLimit": 120 }
+      \ "ColumnLimit": 120 }
 
 
 " cnoreabbrev Ack Ack!
@@ -215,5 +215,5 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline
 let g:vimwiki_list = [{'path': '~/vimwiki',
-                        \ 'nested_syntaxes': {'cpp': 'cpp', 'js': 'js', 'ts': 'ts', 'jsx': 'jsx', 'tsx': 'tsx'}}]
+      \ 'nested_syntaxes': {'cpp': 'cpp', 'js': 'js', 'ts': 'ts', 'jsx': 'jsx', 'tsx': 'tsx'}}]
 

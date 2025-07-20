@@ -10,78 +10,81 @@
 #
 
 exec --no-startup-id eval $(ssh-agent -s)
-exec --no-startup-id ssh-add ~/.ssh/id_rsa
-exec --no-startup-id ssh-add ~/.ssh/id_ed25519
+  exec --no-startup-id ssh-add ~/.ssh/id_rsa
+  exec --no-startup-id ssh-add ~/.ssh/id_ed25519
 
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
 # Logo key. Use Mod4 for WinKey.
-set $mod Mod4
+  set $mod Mod4
 # Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
+  set $left h
+  set $down j
+  set $up k
+  set $right l
 # Your preferred terminal emulator
-set $term ghostty
+  set $term ghostty
 # Your preferred application launcher
-set $menu rofi 
-set $file_browser nautilus
+  set $menu rofi
+  set $file_browser nautilus
 
 
 
 #Startup
-exec --no-startup-id redshift -l 40.20564:-8.41955 -t 6500k:2600k 
-exec --no-startup-id snixembed --fork
-exec --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id wl-paste --primary --watch wl-copy
-exec --no-startup-id greenclip daemon
-exec --no-startup-id kdeconnect-indicator 
-exec --no-startup-id "setxkbmap -layout pt"
-exec --no-startup-id dunst unredir-if-possible
-exec --no-startup-id feh --bg-scale /home/guts/Pictures/dark_souls_dark.jpg /home/guts/Pictures/dark_souls_dark.jpg
+  exec --no-startup-id redshift -l 40.20564:-8.41955 -t 6500k:2600k
+  exec --no-startup-id snixembed --fork
+  exec --no-startup-id $HOME/.config/polybar/launch.sh
+  exec --no-startup-id wl-paste --primary --watch wl-copy
+  exec --no-startup-id greenclip daemon
+  exec --no-startup-id kdeconnect-indicator
+  exec --no-startup-id "setxkbmap -layout pt"
+  exec --no-startup-id dunst unredir-if-possible
+  exec --no-startup-id feh --bg-scale /home/guts/Pictures/dark_souls_dark.jpg /home/guts/Pictures/dark_souls_dark.jpg
 
-exec --no-startup-id playerctld daemon
+  exec --no-startup-id playerctld daemon
 
 
 #Layout
-gaps inner 5 
-gaps outer -5 
+  gaps inner 5
+  gaps outer -5
 # Only add gaps if more than one window in workspace
 # smart_gaps on
 
-tiling_drag off
+  tiling_drag off
 
-# focus_follows_mouse no       
-mouse_warping none          
+# focus_follows_mouse no
+# mouse_warping none
 
 
-default_border pixel 2
+  default_border pixel 2
 # Only draw border if more than one window in workspace
-smart_borders on
+  smart_borders on
 
-for_window [all] title_window_icon on
-for_window [class=.*] border pixel 2
-title_align center
+# for_window [all] title_window_icon on
+  for_window [class=.*] border pixel 2
+  title_align center
 
-for_window [class=Org.gnome.NautilusPreviewer] move position center
-for_window [class=Eog] floating enable
-for_window [class=Gedit] floating enable
-for_window [class=Evince] floating enable
-for_window [class=Com.github.rajsolai.textsnatcher] floating enable
+# for_window [floating] move position center
+  for_window [class=Org.gnome.NautilusPreviewer] resize width 800, resize height 600 , move position center
+  for_window [class=org.gnome.NautilusPreviewer] resize width 800, resize height 600 , move position center
+  for_window [class=Eog] floating enable
+  for_window [class=Gedit] floating enable
+  for_window [class=Evince] floating enable
+  for_window [class=Com.github.rajsolai.textsnatcher] floating enable
 
-for_window [class=kdeconnect.sms] floating enable, move position center
-for_window [class=Com.github.donadigo.eddy] floating enable, move position center
+  for_window [class=kdeconnect.sms] floating enable, move position center
+  for_window [class=Com.github.donadigo.eddy] floating enable, move position center
+  for_window [class="Yad" title="yad-calendar"] floating enable
 
 
-bindsym $mod+Shift+v exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' 
+  bindsym $mod+Shift+v exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 
 # For factorio
-mode "fs" {
+  mode "fs" {
     bindsym $mod+BackSpace mode "default"
-}
+  }
 bindsym $mod+BackSpace mode "fs"
 
 # set $border_color #8E91B8
@@ -89,8 +92,8 @@ bindsym $mod+BackSpace mode "fs"
 # set $border_color #6272a4
 set $border_color #5b5b9c
 
-#Colors        #border  #background   #text 
-client.focused $border_color $border_color #FFFFFF $border_color $border_color 
+#Colors        #border  #background   #text
+client.focused $border_color $border_color #FFFFFF $border_color $border_color
 
 
 
@@ -112,165 +115,166 @@ client.focused $border_color $border_color #FFFFFF $border_color $border_color
 #
 # Basics:
 #
-    # Start a terminal
-    bindsym $mod+Return exec --no-startup-id $term
+# Start a terminal
+bindsym $mod+Return exec --no-startup-id $term
 
-    # Kill focused window
-    bindsym $mod+q kill
+# Kill focused window
+bindsym $mod+q kill
 
-    # Start your launcher
-    bindsym $mod+d exec --no-startup-id $menu -show drun -hint-welcome "Result:" -no-persist-history
+# Start your launcher
+bindsym $mod+d exec --no-startup-id $menu -show drun -hint-welcome "Result:" -no-persist-history
 
-    #Emoji keyboard
-    bindsym $mod+F12 exec --no-startup-id rofimoji
+#Emoji keyboard
+bindsym $mod+F12 exec --no-startup-id rofimoji
 
-    # Launch notes
-    bindsym $mod+n exec --no-startup-id flatpak run md.obsidian.Obsidian
+# Launch notes
+bindsym $mod+n exec --no-startup-id obsidian
 
 
-    bindsym $mod+Tab exec $menu -modi "window" -show window 
+bindsym $mod+Tab exec $menu -modi "window" -show window
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    # floating_modifier Mod1
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+# floating_modifier Mod1
 
-    # Reload the configuration file
-    bindsym $mod+Shift+c reload
-    
-    # Lock the Screen
-    # bindsym $mod+Shift+q exec /home/guts/.config/i3/dracula/i3lock-color/lock 
-    bindsym $mod+Control+q exec i3lock --no-unlock-indicator -i ~/Pictures/nord_minimal_cat.png -t
-    
-    # Take a screenshot
-    bindsym $mod+Shift+s exec flameshot gui
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# Lock the Screen
+# bindsym $mod+Shift+q exec /home/guts/.config/i3/dracula/i3lock-color/lock
+bindsym $mod+Control+q exec i3lock --no-unlock-indicator -i ~/Pictures/nord_minimal_cat.png -t
+
+# Take a screenshot
+bindsym $mod+Shift+s exec flameshot gui
 
 #
 # Moving around:
 #
-    # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 #
 # Workspaces:
 #
 #   Primary Monitor
-    workspace 1 output DP-0
-    workspace 2 output DP-0
-    workspace 3 output DP-0
-    workspace 4 output DP-0
-    workspace 5 output DP-0
+workspace 1 output DP-0
+workspace 2 output DP-0
+workspace 3 output DP-0
+workspace 4 output DP-0
+workspace 5 output DP-0
 
 #   Second Monitor
-    workspace 6 output HDMI-0
-    workspace 7 output HDMI-0
-    workspace 8 output HDMI-0
-    workspace 9 output HDMI-0
-    workspace 10 output HDMI-0
+workspace 6 output HDMI-0
+workspace 7 output HDMI-0
+workspace 8 output HDMI-0
+workspace 9 output HDMI-0
+workspace 10 output HDMI-0
 
-    # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
-    bindsym $mod+6 workspace number 6
-    bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
-    # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
 #
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
 
-    bindsym $mod+Shift+b exec polybar-msg cmd toggle
+bindsym $mod+Shift+b exec polybar-msg cmd toggle
 
-    # Switch the current container between different layout styles
-    #bindsym $mod+e layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+s layout toggle split
+# Switch the current container between different layout styles
+#bindsym $mod+e layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+s layout toggle split
 
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
 
-    # Move focus to the parent container
-    bindsym $mod+a focus parent
+# Move focus to the parent container
+bindsym $mod+a focus parent
 #
 # Scratchpad:
 #
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
 
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
 #
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 90px
+# left will shrink the containers width
+# right will grow the containers width
+# up will shrink the containers height
+# down will grow the containers height
+  bindsym $left resize shrink width 90px
     bindsym $down resize grow height 90px
     bindsym $up resize shrink height 90px
     bindsym $right resize grow width 90px
 
-    # Ditto, with arrow keys
+# Ditto, with arrow keys
     bindsym Left resize shrink width 30px
     bindsym Down resize grow height 30px
     bindsym Up resize shrink height 30px
     bindsym Right resize grow width 30px
 
-    # Return to default mode
+# Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -286,8 +290,8 @@ bindsym $mod+e exec $file_browser
 #bar {
 #    position top
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
+# When the status_command prints a new line to stdout, swaybar updates.
+# The default just shows the current date and time.
 #    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
 
 #    colors {
