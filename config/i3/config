@@ -53,8 +53,8 @@ exec --no-startup-id eval $(ssh-agent -s)
 
   tiling_drag off
 
-# focus_follows_mouse no
-# mouse_warping none
+  focus_follows_mouse no
+  mouse_warping none
 
 
   default_border pixel 2

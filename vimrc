@@ -48,6 +48,7 @@ augroup END
 "   autocmd FileType c,cpp nnoremap <buffer> <silent> <C-s> :ClangFormat<CR>:wall<CR>
 " augroup END
 
+vnoremap <leader>y :w !xsel -b<CR><CR>
 
 " PLUGINS
 call plug#begin()
@@ -88,7 +89,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-autoformat/vim-autoformat'
-
+Plug 'puremourning/vimspector'
 
 call plug#end()
 
@@ -99,6 +100,7 @@ command! -bang -nargs=? -complete=dir Files
 
 let g:gitgutter_enabled = 0
 
+let g:vimspector_enable_mappings = 'HUMAN'
 
 colorscheme catppuccin_macchiato
 

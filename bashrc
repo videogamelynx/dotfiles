@@ -1,7 +1,7 @@
 # Enable the subsequent settings only in interactive sessions
 case $- in
   *i*) ;;
-    *) return;;
+  *) return;;
 esac
 
 # Path to your oh-my-bash installation.
@@ -22,6 +22,8 @@ alias gameopen=". $HOME/.config/user/scripts/game_open.sh"
 source $HOME/.config/user/scripts/game-completion.bash
 
 alias dot='git -C $HOME/.dotfiles'
+
+alias ryujinx='gamemoderun /home/guts/mediaSSD/Games/ryujinx/publish/Ryujinx'
 
 # If you set OSH_THEME to "random", you can ignore themes you don't like.
 # OMB_THEME_RANDOM_IGNORED=("powerbash10k" "wanelo")
