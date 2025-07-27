@@ -57,6 +57,25 @@ CreateProject()
   echo "target_link_libraries($1 PRIVATE SDL3::SDL3)" >> CMakeLists.txt
 
 
+  echo "Configuring vimspector..."
+  touch .vimspector.json
+  echo '{' > .vimspector.json
+  echo '  "configurations": {' >> .vimspector.json
+  echo '    "Launch": {' >> .vimspector.json
+  echo '      "adapter": "vscode-cpptools",' >> .vimspector.json
+  echo '      "configuration": {' >> .vimspector.json
+  echo '        "type":    "cppdbg",' >> .vimspector.json
+  echo '        "request": "launch",' >> .vimspector.json
+  echo '        "program": "${workspaceRoot}/build/'$1'",' >> .vimspector.json
+  echo '        "cwd": "${workspaceRoot}/src",' >> .vimspector.json
+  echo '        "externalConsole": true,' >> .vimspector.json
+  echo '        "stopAtEntry": true,' >> .vimspector.json
+  echo '        "MIMode": "gdb"' >> .vimspector.json
+  echo '      }' >> .vimspector.json
+  echo '    }' >> .vimspector.json
+  echo '  }' >> .vimspector.json
+  echo '}' >> .vimspector.json
+
 
   cd build
   cmake ..

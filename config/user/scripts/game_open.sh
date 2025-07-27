@@ -28,23 +28,20 @@ OpenProject()
   fi
 
   cd $games_dir/$1
-  vim .
 
-  # kitty @ launch --type=os-window --tab-title="${1}/src"  --cwd=$games_dir/$1/src
-  # kitty @ launch --type=os-window --tab-title="${1}/build" --dont-take-focus --cwd=$games_dir/$1/build
   clear
 }
 
 while getopts ":h" option; do
-   case $option in
-      h) # display Help
-         Help
-         exit;;
-   esac
+  case $option in
+    h) # display Help
+      Help
+      exit;;
+  esac
 done
 
 if [ -z $1 ]; then
-   ListProjects
+  ListProjects
 else
   OpenProject $1
 fi
