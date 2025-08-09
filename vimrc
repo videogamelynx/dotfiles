@@ -4,6 +4,10 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source '~/.vimrc'
 endif
 
+"set cursors in insert/normal mode
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
 "Preferences
 set termguicolors
 set noshowmode
@@ -20,6 +24,7 @@ syntax on
 set termwinsize=15x0
 set termwinkey=<C-K>
 set noequalalways
+set splitright
 cabbrev term bo terminal
 
 command Build execute '!cd build && make'
@@ -28,7 +33,9 @@ command Run execute '!find build -maxdepth 1 -executable -type f -exec {} \;'
 cabbrev build Build
 cabbrev run Run
 
-au BufWrite * :Autoformat
+au BufWritePre *.js,*.lua,*.json,*.py :Autoformat
+
+autocmd FileType c,cpp ClangFormatAutoEnable
 
 augroup MyYCMCustom
   autocmd!
@@ -75,7 +82,6 @@ Plug 'vimwiki/vimwiki'
 Plug 'ryanoasis/vim-devicons'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jnurmine/Zenburn'
@@ -90,6 +96,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-autoformat/vim-autoformat'
 Plug 'puremourning/vimspector'
+Plug 'markonm/traces.vim'
+Plug 'wellle/context.vim'
 
 call plug#end()
 
@@ -99,8 +107,9 @@ command! -bang -nargs=? -complete=dir Files
 2024
 
 let g:gitgutter_enabled = 0
+let g:context_max_per_indent = 1
 
-let g:vimspector_enable_mappings = 'HUMAN'
+
 
 colorscheme catppuccin_macchiato
 
@@ -140,6 +149,14 @@ nmap <leader>t :tabnew<CR>
 nmap <leader>l :bprevious <CR>
 nmap <leader>h :bnext <CR>
 
+"Debugger
+
+nmap <F5> <Plug>VimspectorContinue
+nmap <S-F5> <Plug>VimspectorStop
+nmap <F6> <Plug>VimspectorStepOver
+nmap <F8> <Plug>VimspectorJumpToNextBreakpoint
+nmap <F10> <Plug>VimspectorToggleBreakpoint
+map <F9> :YcmCompleter FixIt<CR>
 
 nmap <leader>fm :YcmCompleter Format<CR>
 
@@ -157,6 +174,8 @@ nmap <silent> <c-l> :wincmd l<CR>
 let g:minimap_toggle='<leader>mm'
 
 
+let g:clang_format#code_style = "llvm"
+
 let g:clang_format#style_options = {
       \ "ColumnLimit": 120 }
 
@@ -167,7 +186,6 @@ nnoremap <Leader>fa :CtrlSF<Space>
 " nnoremap gn :tabnext <CR>
 " nnoremap gp :tabprev <CR>
 
-map <F9> :YcmCompleter FixIt<CR>
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -199,7 +217,17 @@ let g:ycm_clangd_args=['--header-insertion=never']
 
 let g:ycm_semantic_triggers = {
       \ 'cpp': ['->', '.', '::', 'SDL'],
+      \ 'lua': ['.', '@'],
       \ }
+
+let g:ycm_language_server =
+      \ [
+      \   {
+      \     'name': 'lua',
+      \     'cmdline': [ '/bin/lua-language-server', '--stdio' ],
+      \     'filetypes': [ 'lua' ]
+      \   },
+      \]
 
 " let loaded_minimap = 1
 " autocmd VimEnter * Minimap

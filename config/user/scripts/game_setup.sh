@@ -47,13 +47,15 @@ CreateProject()
   echo "cmake_minimum_required(VERSION 3.15...3.31)" >> CMakeLists.txt
   echo "" >> CMakeLists.txt
   echo "project($1 VERSION 1.0 DESCRIPTION \"$1\" LANGUAGES CXX)" >> CMakeLists.txt
+  echo "set(CMAKE_CXX_STANDARD 23)" >> CMakeLists.txt
   echo "" >> CMakeLists.txt
   echo "set( CMAKE_EXPORT_COMPILE_COMMANDS ON )" >> CMakeLists.txt
   echo "find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3)" >> CMakeLists.txt
   # echo "include_directories(\${SDL2_INCLUDE_DIRS})" >> CMakeLists.txt
   echo "" >> CMakeLists.txt
   echo "add_compile_options(-g)" >> CMakeLists.txt
-  echo "add_executable($1 src/main.cpp)" >> CMakeLists.txt
+  echo "file(GLOB_RECURSE sources CONFIGURE_DEPENDS "src/*.h" "src/*.cpp")" >> CMakeLists.txt
+  echo "add_executable($1 \${sources})" >> CMakeLists.txt
   echo "target_link_libraries($1 PRIVATE SDL3::SDL3)" >> CMakeLists.txt
 
 

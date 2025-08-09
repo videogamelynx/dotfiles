@@ -7,23 +7,24 @@ esac
 # Path to your oh-my-bash installation.
 export OSH='/home/guts/.oh-my-bash'
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-bash is loaded.
-# OSH_THEME="nekolight"
+alias yay='paru'
+alias yeet='paru -Rcs'
 
 alias sysupdate=$HOME/.config/user/scripts/system_update.sh
 
 alias gamesetup=$HOME/.config/user/scripts/game_setup.sh
 alias gameopen=". $HOME/.config/user/scripts/game_open.sh"
 
-[[ -s /home/guts/.autojump/etc/profile.d/autojump.sh ]] && source /home/guts/.autojump/etc/profile.d/autojump.sh
-
-
-source $HOME/.config/user/scripts/game-completion.bash
-
 alias dot='git -C $HOME/.dotfiles'
 
 alias ryujinx='gamemoderun /home/guts/mediaSSD/Games/ryujinx/publish/Ryujinx'
+
+source $HOME/.config/user/scripts/game_completion.bash
+
+[[ -s /home/guts/.autojump/etc/profile.d/autojump.sh ]] && source /home/guts/.autojump/etc/profile.d/autojump.sh
+
+
+exec fish
 
 # If you set OSH_THEME to "random", you can ignore themes you don't like.
 # OMB_THEME_RANDOM_IGNORED=("powerbash10k" "wanelo")
@@ -171,4 +172,3 @@ source "$OSH"/oh-my-bash.sh
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 #
-eval "$(starship init bash)"

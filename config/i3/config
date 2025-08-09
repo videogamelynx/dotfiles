@@ -9,29 +9,32 @@
 # layout, use the i3-config-wizard
 #
 
-exec --no-startup-id eval $(ssh-agent -s)
-  exec --no-startup-id ssh-add ~/.ssh/id_rsa
-  exec --no-startup-id ssh-add ~/.ssh/id_ed25519
 
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
 # Logo key. Use Mod4 for WinKey.
-  set $mod Mod4
+set $mod Mod4
 # Home row direction keys, like vim
-  set $left h
-  set $down j
-  set $up k
-  set $right l
+set $left h
+set $down j
+set $up k
+set $right l
 # Your preferred terminal emulator
-  set $term ghostty
+set $term ghostty
 # Your preferred application launcher
-  set $menu rofi
-  set $file_browser nautilus
+set $menu rofi -monitor -1
+set $file_browser nautilus
 
 
 
 #Startup
+exec --no-startup-id eval $(ssh-agent -s)
+  exec --no-startup-id ssh-add ~/.ssh/id_rsa
+  exec --no-startup-id ssh-add ~/.ssh/id_ed25519
+
+  exec --no-startup-id xdg-settings set default-web-browser librewolf.desktop
+
   exec --no-startup-id redshift -l 40.20564:-8.41955 -t 6500k:2600k
   exec --no-startup-id snixembed --fork
   exec --no-startup-id $HOME/.config/polybar/launch.sh
@@ -41,8 +44,8 @@ exec --no-startup-id eval $(ssh-agent -s)
   exec --no-startup-id "setxkbmap -layout pt"
   exec --no-startup-id dunst unredir-if-possible
   exec --no-startup-id feh --bg-scale /home/guts/Pictures/dark_souls_dark.jpg /home/guts/Pictures/dark_souls_dark.jpg
-
   exec --no-startup-id playerctld daemon
+  exec --no-startup-id xset -dpms
 
 
 #Layout

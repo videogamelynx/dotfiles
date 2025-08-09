@@ -19,7 +19,7 @@
 # ==========================
 # # The config file consists of simple key-value pairs,
 # # separated by equals signs.
-font-family = IBM Plex Mono Medm
+font-family = IBM Plex Mono
 font-size = 12
 theme = catppuccin-macchiato
 title = "ghostty"
