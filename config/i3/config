@@ -121,6 +121,9 @@ client.focused $border_color $border_color #FFFFFF $border_color $border_color
 # Start a terminal
 bindsym $mod+Return exec --no-startup-id $term
 
+# Open a browser
+bindsym $mod+o exec --no-startup-id librewolf
+
 # Kill focused window
 bindsym $mod+q kill
 

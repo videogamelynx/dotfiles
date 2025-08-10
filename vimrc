@@ -33,9 +33,11 @@ command Run execute '!find build -maxdepth 1 -executable -type f -exec {} \;'
 cabbrev build Build
 cabbrev run Run
 
-au BufWritePre *.js,*.lua,*.json,*.py :Autoformat
+au BufWritePre *.js,*.lua,*.json,*.py Autoformat
 
-autocmd FileType c,cpp ClangFormatAutoEnable
+" autocmd FileType c,cpp ClangFormatAutoEnable
+
+au BufWritePre *.c,*.cpp,*.h,*.hh,*.cc undojoin | ClangFormat
 
 augroup MyYCMCustom
   autocmd!
@@ -106,9 +108,10 @@ command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 2024
 
-let g:gitgutter_enabled = 0
-let g:context_max_per_indent = 1
+let g:gitgutter_enabled = 1
 
+let g:context_max_per_indent = 1
+let g:context_highlight_tag = '<hide>'
 
 
 colorscheme catppuccin_macchiato

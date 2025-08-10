@@ -38,9 +38,12 @@ CreateProject()
 
   mkdir $games_dir/$1 | echo
   cd $games_dir/$1
-  mkdir src build assets
+  mkdir src build build/assets
   touch ./src/main.cpp
   cat $HOME/.config/user/scripts/sdl_dummy_code.cpp >> ./src/main.cpp
+  touch ./.gitignore
+  cat $HOME/.config/user/scripts/gitignoretemplate >> ./.gitignore
+  git init .
 
   echo "Configuring CMake..."
   touch CMakeLists.txt
@@ -102,12 +105,3 @@ if [ -z $1 ]; then
 else
   CreateProject $1
 fi
-
-
-
-
-
-
-
-
-
