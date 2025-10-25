@@ -20,7 +20,7 @@ function gameopen
 
     if test "$game_exists" != "$project_name"
         echo ""
-        echo "Could not find project name $project_name
+        echo "Could not find project name $project_name"
         ListProjects
         return
     end

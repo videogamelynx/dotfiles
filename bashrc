@@ -21,6 +21,8 @@ alias ryujinx='gamemoderun /home/guts/mediaSSD/Games/ryujinx/publish/Ryujinx'
 
 source $HOME/.config/user/scripts/game_completion.bash
 
+source "$HOME/.config/gruvbox/gruvbox_256palette.sh"
+
 [[ -s /home/guts/.autojump/etc/profile.d/autojump.sh ]] && source /home/guts/.autojump/etc/profile.d/autojump.sh
 
 
@@ -173,3 +175,4 @@ source "$OSH"/oh-my-bash.sh
 # alias ohmybash="mate ~/.oh-my-bash"
 #
 . "$HOME/.cargo/env"
+

@@ -4,6 +4,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source '~/.vimrc'
 endif
 
+
 "set cursors in insert/normal mode
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
@@ -21,6 +22,11 @@ set mouse=a
 filetype plugin on
 syntax on
 
+" hi Normal   guibg=NONE   ctermbg=NONE
+" hi NonText  guibg=NONE   ctermbg=NONE
+
+" autocmd VimEnter * hi Normal ctermbg=none
+
 set termwinsize=15x0
 set termwinkey=<C-K>
 set noequalalways
@@ -33,11 +39,34 @@ command Run execute '!find build -maxdepth 1 -executable -type f -exec {} \;'
 cabbrev build Build
 cabbrev run Run
 
+vmap <silent> <C-y> "+y
+nmap <silent> <C-v> "+p
+
+
 au BufWritePre *.js,*.lua,*.json,*.py Autoformat
 
-" autocmd FileType c,cpp ClangFormatAutoEnable
+autocmd FileType c,cpp ClangFormatAutoEnable
 
-au BufWritePre *.c,*.cpp,*.h,*.hh,*.cc undojoin | ClangFormat
+function! s:safeundo()
+    let s:pos = getpos( '. ')
+    let s:view = winsaveview()
+    undo
+    call setpos( '.', s:pos )
+    call winrestview( s:view )
+endfunc
+
+function! s:saferedo()
+    let s:pos = getpos( '.' )
+    let s:view = winsaveview()
+    redo
+    call setpos( '.', s:pos )
+    call winrestview( s:view )
+endfunc
+
+nnoremap u :call <SID>safeundo()<CR>
+nnoremap <C-r> :call <SID>saferedo()<CR>
+
+" au BufWritePre *.c,*.cpp,*.h,*.hh,*.cc undojoin | ClangFormat
 
 augroup MyYCMCustom
   autocmd!
@@ -100,32 +129,56 @@ Plug 'vim-autoformat/vim-autoformat'
 Plug 'puremourning/vimspector'
 Plug 'markonm/traces.vim'
 Plug 'wellle/context.vim'
+Plug 'EdenEast/nightfox.nvim'
 
 call plug#end()
+
+" let g:PaperColor_Theme_Options = {
+"   \   'theme': {
+"   \     'default.dark': {
+"   \       'transparent_background': 1
+"   \     }
+"   \   }
+"   \ }
+
+
+set background=dark
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_bold = 0
+let g:gruvbox_italic = 1
+
+let g:gruvbox_transparent_bg = 1
+
+
+colorscheme gruvbox
+
+" autocmd VimEnter * hi Normal ctermbg=none
+
+hi Normal   guibg=NONE   ctermbg=NONE
+
+
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
+
 
 " FZF
 command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 2024
 
-let g:gitgutter_enabled = 1
+let g:gitgutter_enabled = 0
 
 let g:context_max_per_indent = 1
 let g:context_highlight_tag = '<hide>'
 
-
-colorscheme catppuccin_macchiato
-
-let g:lightline = {
-      \ 'colorscheme': 'catppuccin_macchiato',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ },
-      \ }
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
@@ -149,8 +202,8 @@ nmap <silent> <leader>ps :Ag<CR>
 
 nmap <leader>t :tabnew<CR>
 
-nmap <leader>l :bprevious <CR>
-nmap <leader>h :bnext <CR>
+nmap J :bprevious <CR>
+nmap K :bnext <CR>
 
 "Debugger
 
@@ -180,7 +233,12 @@ let g:minimap_toggle='<leader>mm'
 let g:clang_format#code_style = "llvm"
 
 let g:clang_format#style_options = {
-      \ "ColumnLimit": 120 }
+      \ "ColumnLimit": 120,
+      \ "BinPackArguments": "false",
+      \ "BinPackParameters": "false",
+      \ "ExperimentalAutoDetectBinPacking": "false",
+      \ "AllowAllParametersOfDeclarationOnNextLine": "false",
+      \ "AllowShortIfStatementsOnASingleLine" : "true"}
 
 
 " cnoreabbrev Ack Ack!
@@ -248,5 +306,5 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline
 let g:vimwiki_list = [{'path': '~/vimwiki',
-      \ 'nested_syntaxes': {'cpp': 'cpp', 'js': 'js', 'ts': 'ts', 'jsx': 'jsx', 'tsx': 'tsx'}}]
+      \ 'nested_syntaxes': {'cpp': 'cpp', 'js': 'js', 'ts': 'ts', 'jsx': 'jsx', 'tsx': 'tsx', 'vue': 'vue'}}]
 
