@@ -14,6 +14,7 @@ set termguicolors
 set noshowmode
 let mapleader=" "
 set tabstop=2
+set showtabline=2
 set shiftwidth=2
 set expandtab
 set nocompatible
@@ -44,6 +45,15 @@ nmap <silent> <C-v> "+p
 
 
 au BufWritePre *.js,*.lua,*.json,*.py Autoformat
+
+function! SaveSession()
+  mksession! Session.vim
+endfunc
+
+command CallSaveSession call SaveSession()
+cabbrev ss CallSaveSession
+
+au VimLeavePre *.cpp,*.c,Makefile,CMakeLists.txt,*.h call SaveSession()
 
 autocmd FileType c,cpp ClangFormatAutoEnable
 
@@ -93,7 +103,7 @@ call plug#begin()
 
 " List your plugins here
 Plug 'tpope/vim-sensible'
-
+Plug 'tpope/vim-obsession'
 Plug 'nordtheme/vim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
@@ -128,7 +138,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-autoformat/vim-autoformat'
 Plug 'puremourning/vimspector'
 Plug 'markonm/traces.vim'
-Plug 'wellle/context.vim'
+" Plug 'wellle/context.vim'
 Plug 'EdenEast/nightfox.nvim'
 
 call plug#end()
@@ -176,6 +186,7 @@ command! -bang -nargs=? -complete=dir Files
 
 let g:gitgutter_enabled = 0
 
+let g:context_enabled = 0
 let g:context_max_per_indent = 1
 let g:context_highlight_tag = '<hide>'
 
@@ -204,6 +215,9 @@ nmap <leader>t :tabnew<CR>
 
 nmap J :bprevious <CR>
 nmap K :bnext <CR>
+
+nnoremap H :tabprev <CR>
+nmap L :tabnext <CR>
 
 "Debugger
 

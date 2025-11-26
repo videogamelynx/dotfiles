@@ -8,6 +8,8 @@ alias vimrc="vim $HOME/.vimrc"
 alias fishrc="vim $HOME/.config/fish/config.fish"
 alias i3rc="vim $HOME/.config/i3/config"
 alias meditate='peaclock --config-dir "/home/guts/.config/peaclock"'
+alias scratch="vim (mktemp)"
+alias vims="vim -S Session.vim"
 
 alias sysupdate="bash $HOME/.config/user/scripts/system_update.sh"
 

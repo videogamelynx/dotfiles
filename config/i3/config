@@ -29,7 +29,7 @@ set $file_browser nautilus
 
 
 #Startup
-exec --no-startup-id eval $(ssh-agent -s)
+  exec --no-startup-id eval $(ssh-agent -s)
   exec --no-startup-id ssh-add ~/.ssh/id_rsa
   exec --no-startup-id ssh-add ~/.ssh/id_ed25519
 
@@ -52,7 +52,7 @@ exec --no-startup-id eval $(ssh-agent -s)
   gaps inner 5
   gaps outer -5
 # Only add gaps if more than one window in workspace
-# smart_gaps on
+  # smart_gaps on
 
   tiling_drag off
 
@@ -192,11 +192,17 @@ workspace 4 output DP-0
 workspace 5 output DP-0
 
 #   Second Monitor
-workspace 6 output HDMI-0
-workspace 7 output HDMI-0
-workspace 8 output HDMI-0
-workspace 9 output HDMI-0
-workspace 10 output HDMI-0
+# workspace 6 output HDMI-0
+# workspace 7 output HDMI-0
+# workspace 8 output HDMI-0
+# workspace 9 output HDMI-0
+# workspace 10 output HDMI-0
+
+workspace 6 output DP-0
+workspace 7 output DP-0
+workspace 8 output DP-0
+workspace 9 output DP-0
+workspace 10 output DP-0
 
 # Switch to workspace
 bindsym $mod+1 workspace number 1
