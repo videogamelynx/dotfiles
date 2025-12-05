@@ -2,14 +2,14 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-alias vi="vim"
-alias vim="nvim"
+alias v="nvim"
 alias yay="paru"
 alias yeet="paru -Rcs"
 alias vimrc="nvim $HOME/.config/nvim/init.lua"
 alias tmuxrc="nvim $HOME/.tmux.conf"
 alias fishrc="nvim $HOME/.config/fish/config.fish"
 alias i3rc="nvim $HOME/.config/i3/config"
+alias ghosttyrc="nvim $HOME/.config/ghostty/config"
 alias sshrc="nvim $HOME/.ssh/config"
 alias meditate="peaclock --config-dir $HOME/.config/peaclock"
 alias scratch="nvim (mktemp)"
