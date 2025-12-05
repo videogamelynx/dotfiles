@@ -1,4 +1,3 @@
-# i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 #
@@ -29,74 +28,79 @@ set $file_browser nautilus
 
 
 #Startup
-  exec --no-startup-id eval $(ssh-agent -s)
-  exec --no-startup-id ssh-add ~/.ssh/id_rsa
-  exec --no-startup-id ssh-add ~/.ssh/id_ed25519
+exec --no-startup-id eval $(ssh-agent -s);
+exec --no-startup-id ssh-add ~/.ssh/id_rsa
+exec --no-startup-id ssh-add ~/.ssh/id_ed25519
 
-  exec --no-startup-id xdg-settings set default-web-browser librewolf.desktop
+exec --no-startup-id xdg-settings set default-web-browser librewolf.desktop
 
-  exec --no-startup-id redshift-gtk -l 40.20564:-8.41955 -t 6500k:2600k
-  exec --no-startup-id snixembed --fork
-  exec --no-startup-id $HOME/.config/polybar/launch.sh
-  exec --no-startup-id wl-paste --primary --watch wl-copy
-  exec --no-startup-id greenclip daemon
-  exec --no-startup-id kdeconnect-indicator
-  exec --no-startup-id "setxkbmap -layout pt"
-  exec --no-startup-id dunst unredir-if-possible
-  exec --no-startup-id feh --bg-scale /home/guts/Pictures/dark_souls_dark.jpg /home/guts/Pictures/dark_souls_dark.jpg
-  exec --no-startup-id playerctld daemon
-  exec --no-startup-id xset -dpms
+exec --no-startup-id redshift-gtk -l 40.20564:-8.41955 -t 6500k:2600k
+exec --no-startup-id snixembed --fork
+exec --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id wl-paste --primary --watch wl-copy
+exec --no-startup-id greenclip daemon
+exec --no-startup-id kdeconnect-indicator
+exec --no-startup-id "setxkbmap -layout pt"
+exec --no-startup-id dunst unredir-if-possible
+exec --no-startup-id feh --bg-scale /home/guts/Pictures/dark_souls_dark.jpg /home/guts/Pictures/dark_souls_dark.jpg
+exec --no-startup-id playerctld daemon
+exec --no-startup-id xset -dpms
 
 
 #Layout
-  gaps inner 5
-  gaps outer -5
+gaps inner 5
+gaps outer -5
 # Only add gaps if more than one window in workspace
-  # smart_gaps on
+# smart_gaps on
 
-  tiling_drag off
+tiling_drag off
 
-  focus_follows_mouse no
-  mouse_warping none
+focus_follows_mouse no
+mouse_warping none
 
 
-  default_border pixel 2
+default_border pixel 1
 # Only draw border if more than one window in workspace
-  smart_borders on
+smart_borders on
 
 # for_window [all] title_window_icon on
-  for_window [class=.*] border pixel 2
-  title_align center
+for_window [class=.*] border pixel 1
+title_align center
 
 # for_window [floating] move position center
-  for_window [class=Org.gnome.NautilusPreviewer] resize width 800, resize height 600 , move position center
-  for_window [class=org.gnome.NautilusPreviewer] resize width 800, resize height 600 , move position center
-  for_window [class=Eog] floating enable
-  for_window [class=Gedit] floating enable
-  for_window [class=Evince] floating enable
-  for_window [class=Com.github.rajsolai.textsnatcher] floating enable
+for_window [class=python3] floating enable, resize set 600 600, move position center
+for_window [class=org.gnome.Nautilus] floating enable, resize set 1200 800, move position center
+for_window [class=Org.gnome.NautilusPreviewer] move position center
+for_window [class=Eog] floating enable
+for_window [class=Gedit] floating enable
+for_window [class=Evince] floating enable
+for_window [class=Spotify] floating enable, resize set 1200 800, move position center
+for_window [class=Com.github.rajsolai.textsnatcher] floating enable
+for_window [class=kdeconnect.sms] floating enable, move position center
+for_window [class=Com.github.donadigo.eddy] floating enable, move position center
+for_window [class="Yad" title="yad-calendar"] floating enable
+for_window [class="FreeTube"] layout tabbed
 
-  for_window [class=kdeconnect.sms] floating enable, move position center
-  for_window [class=Com.github.donadigo.eddy] floating enable, move position center
-  for_window [class="Yad" title="yad-calendar"] floating enable
 
-
-  bindsym $mod+Shift+v exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+bindsym $mod+Shift+v exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 
 # For factorio
-  mode "fs" {
-    bindsym $mod+BackSpace mode "default"
-  }
-bindsym $mod+BackSpace mode "fs"
+# mode "fs" {
+#   bindsym $mod+BackSpace mode "default"
+# }
+# bindsym $mod+BackSpace mode "fs"
 
 # set $border_color #8E91B8
 # set $border_color #6D6794
 # set $border_color #6272a4
-set $border_color #5b5b9c
+# set $border_color #5b5b9c
+# set $border_color #4d4d84
+set $border_color #454576
+set $title_background #151119
 
 #Colors        #border  #background   #text
-client.focused $border_color $border_color #FFFFFF $border_color $border_color
+client.focused $title_background $title_background #FFFFFF $title_background $border_color
 
 
 
@@ -238,6 +242,9 @@ bindsym $mod+b splith
 bindsym $mod+v splitv
 
 bindsym $mod+Shift+b exec polybar-msg cmd toggle
+
+# workspace_layout tabbed
+
 
 # Switch the current container between different layout styles
 #bindsym $mod+e layout stacking
