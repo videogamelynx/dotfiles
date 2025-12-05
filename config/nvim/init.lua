@@ -317,8 +317,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('n', 'gr', vim.lsp.buf.references, opts)
 
         -- Diagnostics ([g / ]g)
-        map('n', '[g', vim.diagnostic.goto_prev, opts)
-        map('n', ']g', vim.diagnostic.goto_next, opts)
+        map('n', '<leader>g', vim.diagnostic.goto_next, opts)
+        map('n', '<leader>G', vim.diagnostic.goto_prev, opts)
 
         -- Documentation (gh -> K)
         -- Native vim uses K by default for hover, mapping gh to it
