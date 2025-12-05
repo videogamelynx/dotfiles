@@ -33,10 +33,12 @@ require("lazy").setup({
     {
         "ellisonleao/gruvbox.nvim",
         priority = 1000,
-        config = true,
+        -- config = true,
         opts = {
             contrast = "hard",
             transparent_mode = true,
+            bold = false,
+            italic = false,
         },
     },
     { "savq/melange-nvim" },
@@ -130,7 +132,7 @@ require("lazy").setup({
 local opt = vim.opt
 
 -- Appearance
--- opt.termguicolors = true
+opt.termguicolors = true
 opt.background = "dark"
 opt.number = true
 opt.relativenumber = true
@@ -220,17 +222,20 @@ require("gruvbox").setup({
     contrast = "hard",
     transparent_mode = true,
     bold = false,
-    italic = {
+    italic =
+    {
         strings = false,
         emphasis = true,
         comments = true,
         operators = false,
         folds = true,
     },
-    dim_inactive = true,
+    overrides = {
+        DiagnosticUnnecessary = { link = "Comment" },
+    }
 })
 
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd("colorscheme gruvbox")
 
 -- vim.cmd.colorscheme 'melange'
 
@@ -325,7 +330,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('n', 'gh', vim.lsp.buf.hover, opts)
 
         -- Inlay Hints (ih)
-        map('n', 'ih', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opts)
+        map('n', '<leader>ih', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opts)
 
         -- Organize Imports (Action)
         map('n', 'OR', vim.lsp.buf.code_action, opts)
