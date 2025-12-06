@@ -32,7 +32,7 @@ maximize = false
 
 clipboard-trim-trailing-spaces = true
 
-background-opacity = 0.9
+background-opacity = 0.99
 background-blur = false
 
 gtk-single-instance = true

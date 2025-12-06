@@ -43,6 +43,18 @@ require("lazy").setup({
 
 	-- THEMES
 	{ "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 },
+	-- LuRsT/austere.vim
+	-- n1ghtmare/noirblaze-vim
+	-- zenbones-theme/zenbones.nvim
+	-- aktersnurra/no-clown-fiesta.nvim
+	-- rose-pine/neovim
+	-- whatyouhide/vim-gotham
+	-- ajmwagar/vim-deus
+	-- tyrannicaltoucan/vim-deep-space
+	-- yorickpeterse/happy_hacking.vim
+	-- vague-theme/vague.nvim
+	-- scottmckendry/cyberdream.nvim
+
 	-- {
 	--     "zaldih/themery.nvim",
 	--     lazy = false,
@@ -316,7 +328,7 @@ end)
 -- =============================================================================
 
 require("gruvbox").setup({
-	contrast = "hard",
+	contrast = "soft",
 	transparent_mode = true,
 	bold = false,
 	italic = {
@@ -569,6 +581,5 @@ require("conform").setup({
 	},
 })
 
--- Custom commands to build/run (Ported from vimrc)
-vim.api.nvim_create_user_command("Build", 'execute "!cd build && make"', {})
+vim.api.nvim_create_user_command("BuildCpp", 'execute "!cd build && make"', {})
 vim.api.nvim_create_user_command("Run", 'execute "!find build -maxdepth 1 -executable -type f -exec {} \\;"', {})

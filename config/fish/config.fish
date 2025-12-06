@@ -17,6 +17,8 @@ alias playswitch="gamemoderun $HOME/mediaSSD/Games/ryujinx/publish/Ryujinx"
 alias sysupdate="bash $HOME/.config/user/scripts/system_update.sh"
 alias gamesetup="bash $HOME/.config/user/scripts/game_setup.sh"
 alias makeclass="bash $HOME/.config/user/scripts/createclasscpp.sh"
+alias zil="zig build run"
+alias sourcerc="source $HOME/.config/fish/config.fish"
 alias desk="cd $HOME/Desktop"
 
 alias dot="git -C $HOME/.dotfiles"
